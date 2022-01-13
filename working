@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+mkdir -p /tmp/desync
+
+TAR=tar
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  TAR=gtar
+fi
+
+set +e
+$TAR -c --verbose --sort=name --hard-dereference --files-from working.list | \
+  desync tar --verbose --tar-add-root --input-format tar --index --store /tmp/desync working.caidx -;
+result=$?
+set -e
+
+echo "Result of desync run was: $result" >&2
+echo ".caidx produced was: $(ls -lah working.caidx)" >&2
+
+exit $result
