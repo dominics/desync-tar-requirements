@@ -27,8 +27,8 @@ When passing a file list to GNU tar, this means:
 Your options are:
 
 - Include the intermediate directories in the tar
-  - This can be complicated, because by adding the directories tar will, by default, recurse into them, potentially picking
-    up sibling entries sibling entries that you didn't want included.)
+  - This can be complicated, because, by adding the directories, tar will by default recurse into them, potentially picking
+    up sibling entries that you didn't want included.
     - e.g. consider if there was a file at `./a/b/foo` that you _didn't_ want in the resulting tar
     - You can `--exclude` specific directory contents you don't want, but this gets complicated/unwieldy if the file tree in question is large
   - Otherwise, you can pass the `--no-recursion` flag; this lets you do the recursion yourself, allowing you to control the contents of the tar much more exactly, because you can include _just_ the intermediate directories and not their contents
